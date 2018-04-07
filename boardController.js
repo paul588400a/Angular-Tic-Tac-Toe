@@ -13,7 +13,7 @@ mainApp.controller("boardController", function($scope) {
    $scope.cellClick = function(event){
 	  $scope.disable(event);
 	  event.target.textContent = $scope.curPlayer;
-	  var cr = event.target.id.split(',');
+	  var cr = event.target.id.split('-');
 	  $scope.board[cr[0]][cr[1]] = $scope.curPlayer;
 	  if($scope.judge($scope.curPlayer, cr[0], cr[1]))
 		  $scope.winner = $scope.curPlayer;
@@ -53,5 +53,17 @@ mainApp.controller("boardController", function($scope) {
    
    $scope.disable = function(event){
 	   event.target.disabled = true;
+   }
+   
+   $scope.reset = function(){
+	   $scope.winner = '';
+	   for(i=0; i<3; i++){
+		   for(j=0; j<3; j++){
+			   $scope.board[i][j] = -1;
+			   var myElement = document.getElementById(i+'-'+j);
+			   myElement.disabled = false;
+			   myElement.innerHTML = '&nbsp;&nbsp;&nbsp;';
+		   }
+	   }
    }
 });
