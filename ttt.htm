@@ -1,0 +1,56 @@
+<html>
+   
+   <head>
+      <title>Angular Tic Tac Toe</title>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      <script src = "mainApp.js"></script>
+      <script src = "boardController.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <style>
+         table, th , td {
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+		 
+		 .btn-xlarge {
+			padding: 32px 52px;
+			font-size: 40px; //change this to your desired size
+			line-height: normal;
+			-webkit-border-radius: 8px;
+			   -moz-border-radius: 8px;
+            border-radius: 8px;
+		 }
+      </style>
+      
+   </head>
+   
+   <body>
+	   <div class="row">
+		    <div class="col-md-4"></div>
+		    <div class="col-md-4">
+			    <div ng-app = "mainApp" ng-controller = "boardController">
+				<h3><span class="label label-info">Current player: {{curPlayer}}</span></h3>
+				    <table>
+					    <tr ng-repeat = "rows in tableVal">
+						    <td ng-repeat = "col in rows.column">
+							    <button class="btn btn-xlarge btn-block" ng-attr-id = {{rows.row+"-"+col.val}} data-ng-click="cellClick($event)" ng-disabled="winner!=''">&nbsp;&nbsp;&nbsp;</button>
+						    </td>
+					    </tr>
+				    </table>
+					<h3><span class="label label-success" ng-hide="winner==''">Player {{winner}} wins the game!</span><h3>
+					<button class="btn btn-default btn-lg btn-block" data-ng-click="reset()">RESET</button>
+				</div>
+				<div class="col-md-4"></div> 
+			</div>  
+		</div>
+    </body>
+</html>
